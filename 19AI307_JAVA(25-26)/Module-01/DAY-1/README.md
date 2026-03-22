@@ -27,8 +27,8 @@ To write a simple Java program to display the message “Hey, my first java prog
  ```
 /*
 Program to implement variables and Operators using Java
-Developed by: Nandhini M
-RegisterNumber: 212224040211 
+Developed by: Venkat Ramana S B
+RegisterNumber: 212224060296 
 */
 ```
 
