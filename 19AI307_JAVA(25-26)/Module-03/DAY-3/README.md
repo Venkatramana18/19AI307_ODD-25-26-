@@ -1,22 +1,27 @@
-# Ex.No:3(C) ABSTRACTION
+# Ex.No:3(D)    INTERFACE 
 
 ## QUESTION:
 
-Create abstract class BankAccount with method calculateInterest(). Extend it in SavingsAccount and FixedDepositAccount.
+You are programming bots that analyze weather data. Each bot must implement a common interface and give a prediction.
+
+
+ Bot Types:
+
+SunBot: Predicts "HOT" if temperature > 30, else "MODERATE".
+
 
 ## AIM:
 
-To write a Java program using abstraction by creating an abstract class BankAccount with the method calculateInterest() and implementing it in SavingsAccount and FixedDepositAccount classes.
-
+To write a Java program that uses an interface WeatherBot to predict weather conditions using different bot classes SunBot and RainBo
 
 ## ALGORITHM :
 1.	Start the program.
 2.	Import the necessary package 'java.util'
-3.	Create an abstract class BankAccount with an abstract method calculateInterest().
-4. Create a subclass SavingsAccount that extends BankAccount, store the balance, and implement calculateInterest() to calculate interest at 4%.
-5. Create another subclass FixedDepositAccount that extends BankAccount, store the amount and years, and implement calculateInterest() to calculate interest at 7% per year.
-6. In the main method, read the account type and required inputs using Scanner, then create the appropriate object.
-7. Call the calculateInterest() method using the object and display the calculated interest.
+3.	Create an interface WeatherBot with a method predict(int temperature).
+4. Create a class SunBot that implements WeatherBot and returns "HOT" if temperature > 30, otherwise "MODERATE".
+5. Create another class RainBot that implements WeatherBot and returns "COLD" if temperature < 20, otherwise "WARM".
+6. In the main method, read the temperature and bot type from the user using Scanner, and create the appropriate bot object.
+7. Call the predict() method using the object and display the prediction.
 
 
 
@@ -25,7 +30,7 @@ To write a Java program using abstraction by creating an abstract class BankAcco
 ## PROGRAM:
  ```
 /*
-Program to implement a Abstraction using Java
+Program to implement a Interface using Java
 Developed by: Venkat Ramana S B
 RegisterNumber:  212224060296
 */
@@ -34,35 +39,29 @@ RegisterNumber:  212224060296
 ## SOURCE CODE:
 
 ```
-import java.util.*;
+import java.util.Scanner;
 
-abstract class BankAccount {
-    abstract double calculateInterest();
+interface WeatherBot {
+    String predict(int temperature);
 }
 
-class SavingsAccount extends BankAccount {
-    double balance;
-
-    SavingsAccount(double balance) {
-        this.balance = balance;
-    }
-
-    double calculateInterest() {
-        return balance * 0.04;
+class SunBot implements WeatherBot {
+    public String predict(int temperature) {
+        if (temperature > 30) {
+            return "HOT";
+        } else {
+            return "MODERATE";
+        }
     }
 }
 
-class FixedDepositAccount extends BankAccount {
-    double amount;
-    int years;
-
-    FixedDepositAccount(double amount, int years) {
-        this.amount = amount;
-        this.years = years;
-    }
-
-    double calculateInterest() {
-        return amount * 0.07 * years;
+class RainBot implements WeatherBot {
+    public String predict(int temperature) {
+        if (temperature < 20) {
+            return "COLD";
+        } else {
+            return "WARM";
+        }
     }
 }
 
@@ -70,19 +69,18 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        int type = sc.nextInt();
-        BankAccount acc;
+        int temperature = sc.nextInt();
+        int botType = sc.nextInt();
 
-        if (type == 1) {
-            double balance = sc.nextDouble();
-            acc = new SavingsAccount(balance);
+        WeatherBot bot;
+
+        if (botType == 1) {
+            bot = new SunBot();
         } else {
-            double amount = sc.nextDouble();
-            int years = sc.nextInt();
-            acc = new FixedDepositAccount(amount, years);
+            bot = new RainBot();
         }
 
-        System.out.printf("%.2f", acc.calculateInterest());
+        System.out.println(bot.predict(temperature));
     }
 }
 ```
@@ -93,9 +91,9 @@ public class Main {
 
 ## OUTPUT:
 
-<img width="549" height="377" alt="image" src="https://github.com/user-attachments/assets/9e59165a-69e6-4c7c-9689-792a11c0b3ab" />
+<img width="560" height="176" alt="image" src="https://github.com/user-attachments/assets/5cfb5d68-64b4-42a6-8a28-216713210ba3" />
 
 ## RESULT:
 
 The Java program was executed successfully.
-The abstract method calculateInterest() was implemented in both SavingsAccount and FixedDepositAccount classes, and the correct interest value was calculated and displayed based on the account type.
+The appropriate bot (SunBot or RainBot) predicted the weather condition based on the given temperature and displayed the result.
